@@ -1,0 +1,12 @@
+<suite name="test1" verbose="1">
+<test name="TestCycle1">
+<classes>
+
+
+
+<class name="testss.Boxtesting"></class>
+
+
+</classes>
+</test>
+</suite>
