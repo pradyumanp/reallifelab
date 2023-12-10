@@ -1,0 +1,36 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class Boxsets extends Testbase{
+	public Boxsets(WebDriver driver) {
+		PageFactory.initElements(driver, this);	
+		
+	}
+	@FindBy(xpath="//div[@class='row bestsellerbox']/descendant::a[1]")
+	WebElement book1;
+	@FindBy(xpath="//div[@id='ctl00_phBody_ProductDetail_divaction']/descendant::input[1]")
+	WebElement buynow;
+	
+	
+	
+		
+		
+	public void books() throws InterruptedException {
+		book1.click();
+		Thread.sleep(1000);
+		
+	
+		
+	}
+	public void buynow()
+	{
+		buynow.click();
+	}
+
+	
+
+}
