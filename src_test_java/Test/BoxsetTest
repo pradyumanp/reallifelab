@@ -1,0 +1,83 @@
+package testss;
+
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+
+import com.aventstack.extentreports.util.Assert;
+
+import pages.Boxsets;
+import pages.Homepage;
+import pages.Login;
+import pages.Testbase;
+import utility.Excel;
+
+import org.testng.asserts.*;
+
+public class BoxsetTest extends Testbase {
+	Homepage hp;
+	Login lp;
+Boxsets bp;
+	public static int RowNum=1;
+	@BeforeTest
+	public void start_browser()
+	{
+		OpenBrowser();
+		hp = new Homepage(driver);
+		lp = new Login(driver);
+		bp = new Boxsets(driver);
+	}
+
+	
+	@Test(dataProvider="LoginDetails", priority='1')
+	public void test_login(String email, String password) throws IOException, InterruptedException
+	{
+		hp.clickLogin();
+		lp.user_login(email,password);
+		String uname=lp.get_uname();
+		
+		//Assert.assertEquals(uname, email);
+		//Assert.assertNotEquals(uname, "My Account");
+		
+		//lp.user_logout();
+	}
+	
+	
+	  @DataProvider(name="LoginDetails") public Object[][] datasupplier() throws
+	  EncryptedDocumentException, IOException {
+	  
+	  Object[] [] input = Excel.getTestData("Sheet1"); return input;
+	  
+	  }
+	  
+		@Test(priority='2')
+		public void clickboxsets(){
+			hp.clickBoxSets();
+			
+			
+		
+			
+		}
+		@Test(priority='3')
+		public void clickbook1() throws InterruptedException{
+			bp.books();
+			bp.buynow();
+			lp.user_logout();
+			
+			
+		}
+	
+		@AfterTest
+		public void close_browser()
+		{
+			driver.close();
+		}
+		
+		
+
+}
